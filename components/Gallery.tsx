@@ -12,10 +12,20 @@ const Gallery: React.FC<GalleryProps> = ({ items }) => {
 
   const activeImages = items.find(cat => cat.category === activeCategory)?.images || [];
 
+  const handleImageClick = (e: React.MouseEvent, img: string) => {
+    e.stopPropagation();
+    setSelectedImage(img);
+  };
+
+  const closeLightbox = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setSelectedImage(null);
+  };
+
   return (
     <div className="w-full space-y-12">
-      {/* Category Selector - Horizontal Scroll on Mobile */}
-      <div className="sticky top-24 z-30 py-4 bg-[#fcfbf9]/80 backdrop-blur-sm -mx-6 px-6 border-b border-[#2d1e16]/5 overflow-x-auto scrollbar-hide flex gap-3 no-scrollbar">
+      {/* Category Selector */}
+      <div className="sticky top-24 z-30 py-4 bg-[#fcfbf9]/80 backdrop-blur-sm -mx-6 px-6 border-b border-[#2d1e16]/5 overflow-x-auto no-scrollbar flex gap-3">
         {items.map((cat, idx) => (
           <button
             key={idx}
@@ -32,12 +42,12 @@ const Gallery: React.FC<GalleryProps> = ({ items }) => {
       </div>
 
       {/* Grid Display */}
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
         {activeImages.map((img, imgIdx) => (
           <div 
             key={imgIdx}
-            className="relative aspect-[4/5] rounded-[2rem] overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 cursor-pointer group bg-white border border-[#2d1e16]/5"
-            onClick={() => setSelectedImage(img)}
+            className="relative aspect-[4/5] rounded-[2rem] overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 cursor-pointer group bg-white border border-[#2d1e16]/5"
+            onClick={(e) => handleImageClick(e, img)}
           >
             <img 
               src={img} 
@@ -45,34 +55,30 @@ const Gallery: React.FC<GalleryProps> = ({ items }) => {
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
               loading="lazy"
             />
-            {/* Overlay on hover - now correctly contained within its parent */}
-            <div className="absolute inset-0 bg-[#2d1e16]/0 group-hover:bg-[#2d1e16]/10 transition-colors duration-300 pointer-events-none"></div>
+            <div className="absolute inset-0 bg-[#2d1e16]/0 group-hover:bg-[#2d1e16]/5 transition-colors duration-300 pointer-events-none"></div>
           </div>
         ))}
       </div>
 
-      {activeImages.length === 0 && (
-        <div className="py-20 text-center text-[#2d1e16]/30 font-light italic">
-          Nenhuma imagem cadastrada para esta categoria.
-        </div>
-      )}
-
-      {/* Lightbox */}
+      {/* Lightbox - Só renderiza se houver uma imagem selecionada */}
       {selectedImage && (
         <div 
-          className="fixed inset-0 z-[200] bg-[#2d1e16]/95 flex items-center justify-center p-4 cursor-pointer backdrop-blur-md transition-opacity duration-300"
-          onClick={() => setSelectedImage(null)}
+          className="fixed inset-0 z-[9999] bg-[#2d1e16]/95 flex items-center justify-center p-4 cursor-pointer backdrop-blur-md"
+          onClick={closeLightbox}
         >
           <div className="relative max-w-5xl w-full h-full flex items-center justify-center animate-in zoom-in-95 duration-300">
              <img 
                src={selectedImage} 
                alt="Fullscreen" 
-               className="max-w-full max-h-[85vh] object-contain rounded-2xl shadow-2xl border border-white/10" 
+               className="max-w-full max-h-[85vh] object-contain rounded-2xl shadow-2xl" 
+               onClick={(e) => e.stopPropagation()} // Impede fechar ao clicar na imagem em si
              />
-             <button className="absolute top-4 right-4 text-white/50 hover:text-white text-4xl transition-colors">&times;</button>
-             <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white/40 text-[10px] uppercase tracking-widest font-bold">
-               {activeCategory}
-             </div>
+             <button 
+               onClick={closeLightbox}
+               className="absolute top-4 right-4 text-white/70 hover:text-white text-5xl transition-colors p-4"
+             >
+               &times;
+             </button>
           </div>
         </div>
       )}
