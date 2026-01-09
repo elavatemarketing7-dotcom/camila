@@ -1,0 +1,8 @@
+{
+  "name": "Camila Rufino - Biomedicina Estética Premium",
+  "description": "Uma experiência exclusiva de estética avançada com foco em naturalidade e segurança, liderada pela Dra. Camila Rufino.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
