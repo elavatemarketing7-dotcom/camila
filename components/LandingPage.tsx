@@ -71,24 +71,31 @@ const LandingPage: React.FC = () => {
         </div>
       </nav>
 
-      <header id="home" className="relative min-h-[85vh] flex items-center justify-center overflow-hidden bg-[#2d1e16]">
+      {/* Hero Section - FOTO TOTALMENTE APARENTE E FOCADA */}
+      <header id="home" className="relative min-h-screen flex items-end md:items-center justify-center overflow-hidden bg-[#fcfbf9]">
         <div className="absolute inset-0 z-0">
-          <img src={EXPERT_PHOTOS.main} alt={EXPERT_NAME} className="w-full h-full object-cover object-top" />
-          <div className="absolute inset-0 bg-black/30"></div>
-          <div className="absolute inset-0 bg-gradient-to-t from-[#2d1e16] via-transparent to-transparent opacity-80"></div>
+          <img 
+            src={EXPERT_PHOTOS.main} 
+            alt={EXPERT_NAME} 
+            className="w-full h-full object-cover object-top opacity-100" 
+          />
+          {/* Overlay extremamente sutil apenas para dar contraste ao texto sem escurecer a foto */}
+          <div className="absolute inset-0 bg-black/5 md:bg-transparent"></div>
+          {/* Degradê inferior suave no mobile para transição suave */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent md:hidden"></div>
         </div>
         
-        <div className="relative z-20 w-full max-w-7xl mx-auto px-6 text-center md:text-left">
-          <div className="space-y-6 max-w-3xl">
-            <h2 className="text-5xl md:text-9xl font-bold text-white leading-none tracking-tighter">
+        <div className="relative z-20 w-full max-w-7xl mx-auto px-6 pb-20 md:pb-0 text-center md:text-left">
+          <div className="space-y-4 md:space-y-6 max-w-3xl">
+            <h2 className="text-6xl md:text-9xl font-bold text-white md:text-[#2d1e16] leading-none tracking-tighter drop-shadow-[0_4px_4px_rgba(0,0,0,0.25)] md:drop-shadow-none">
               Realce sua <br/>
-              <span className="italic text-[#c2a382] font-normal signature text-6xl md:text-9xl block mt-2">essência</span>
+              <span className="italic text-[#c2a382] font-normal signature text-7xl md:text-9xl block mt-2 drop-shadow-md">essência</span>
             </h2>
-            <p className="text-base md:text-2xl text-white/90 leading-relaxed max-w-lg">
-              Dra. <span className="font-bold">{EXPERT_NAME}</span>. Biomedicina Estética com foco em naturalidade e resultados reais.
+            <p className="text-base md:text-2xl text-white md:text-[#2d1e16]/70 font-semibold md:font-medium leading-relaxed max-w-lg drop-shadow-md md:drop-shadow-none">
+              Dra. <span className="font-bold text-[#c2a382]">{EXPERT_NAME}</span>. Biomedicina Estética com foco em naturalidade e resultados reais.
             </p>
             <div className="flex flex-col md:flex-row gap-4 pt-4">
-              <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="px-10 py-5 bg-[#c2a382] text-white rounded-full text-base font-bold text-center shadow-2xl">
+              <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="px-10 py-5 bg-[#c2a382] text-white rounded-full text-base font-bold text-center shadow-[0_15px_30px_rgba(194,163,130,0.5)] hover:scale-105 active:scale-95 transition-transform">
                 Agendar Agora
               </a>
             </div>

@@ -13,18 +13,18 @@
             100% { background-position: 200% 0; }
         }
         @keyframes breathe {
-            0%, 100% { transform: scale(1); opacity: 0.1; }
-            50% { transform: scale(1.1); opacity: 0.2; }
+            0%, 100% { transform: scale(1); opacity: 0.95; }
+            50% { transform: scale(1.03); opacity: 1; }
         }
         @keyframes soft-flash {
             0%, 100% { opacity: 1; }
-            50% { opacity: 0.85; }
+            50% { opacity: 0.95; }
         }
         .animate-breathe {
-            animation: breathe 8s ease-in-out infinite;
+            animation: breathe 12s ease-in-out infinite;
         }
         .animate-soft-flash {
-            animation: soft-flash 3s ease-in-out infinite;
+            animation: soft-flash 4s ease-in-out infinite;
         }
         .shimmer-effect {
             background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);

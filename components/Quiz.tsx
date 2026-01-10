@@ -43,24 +43,28 @@ const Quiz: React.FC<QuizProps> = ({ onFinish, onGoToSite }) => {
   if (isAnalyzing) {
     return (
       <div className="fixed inset-0 z-[110] flex items-center justify-center bg-[#fcfbf9] p-4 text-center">
-        <div className="w-full max-w-xs space-y-8 animate-in fade-in zoom-in duration-500">
-           <div className="relative">
-            <div className="w-24 h-24 rounded-full border-2 border-[#c2a382] overflow-hidden shadow-xl mx-auto ring-4 ring-[#2d1e16]/5">
-              <img src={EXPERT_PHOTOS.main} alt={EXPERT_NAME} className="w-full h-full object-cover" />
+        <div className="w-full max-w-sm space-y-10 animate-in fade-in zoom-in duration-700">
+           <div className="relative flex justify-center">
+            <div className="w-32 h-32 md:w-44 md:h-44 rounded-full border-2 border-[#c2a382] overflow-hidden shadow-2xl ring-8 ring-[#2d1e16]/5 transition-transform duration-1000">
+              <img 
+                src={EXPERT_PHOTOS.main} 
+                alt={EXPERT_NAME} 
+                className="w-full h-full object-cover object-top scale-125" 
+              />
             </div>
           </div>
-          <div className="space-y-2">
-            <h2 className="text-2xl font-bold text-[#2d1e16]">Analisando Perfil</h2>
-            <p className="text-xs text-[#6b7280] font-light">Desenhando sua jornada exclusiva...</p>
-          </div>
           <div className="space-y-3">
-             <div className="w-full bg-gray-100 rounded-full h-1 overflow-hidden">
+            <h2 className="text-3xl font-bold text-[#2d1e16] tracking-tight">Analisando Perfil</h2>
+            <p className="text-sm text-[#2d1e16]/50 font-light max-w-[220px] mx-auto italic">Cruzando seus objetivos com nossos protocolos exclusivos...</p>
+          </div>
+          <div className="space-y-4 max-w-xs mx-auto">
+             <div className="w-full bg-gray-100 rounded-full h-1.5 overflow-hidden">
                 <div 
-                  className="bg-[#c2a382] h-full transition-all duration-300" 
+                  className="bg-[#c2a382] h-full transition-all duration-300 ease-out shadow-[0_0_10px_rgba(194,163,130,0.5)]" 
                   style={{ width: `${progress}%` }}
                 ></div>
              </div>
-             <p className="text-[#c2a382] text-[9px] font-black tracking-widest uppercase">{Math.round(progress)}% Concluído</p>
+             <p className="text-[#c2a382] text-[10px] font-black tracking-[0.3em] uppercase">{Math.round(progress)}% Concluído</p>
           </div>
         </div>
       </div>
@@ -93,9 +97,13 @@ const Quiz: React.FC<QuizProps> = ({ onFinish, onGoToSite }) => {
              <div className="w-5"></div>
           </div>
           
-          <div className="relative inline-block mb-3">
-            <div className="w-14 h-14 rounded-full border border-[#c2a382] overflow-hidden mx-auto shadow-md ring-2 ring-[#2d1e16]/5">
-              <img src={EXPERT_PHOTOS.main} alt={EXPERT_NAME} className="w-full h-full object-cover" />
+          <div className="relative flex justify-center mb-3">
+            <div className="w-16 h-16 rounded-full border border-[#c2a382] overflow-hidden shadow-md ring-4 ring-[#2d1e16]/5">
+              <img 
+                src={EXPERT_PHOTOS.main} 
+                alt={EXPERT_NAME} 
+                className="w-full h-full object-cover object-top" 
+              />
             </div>
           </div>
           
